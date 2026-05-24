@@ -4,6 +4,7 @@ const intro = document.getElementById("introSlice");
 const cursor = document.getElementById("cursor");
 const spotlight = document.getElementById("spotlight");
 const terminalText = document.getElementById("terminalText");
+const reactiveTriangles = document.getElementById("reactiveTriangles");
 
 const terminalLines = [
   "> sai.profile.boot()",
@@ -63,6 +64,14 @@ function setupCursor() {
     cursor.style.top = `${nextY}px`;
     spotlight.style.setProperty("--mx", `${nextX}px`);
     spotlight.style.setProperty("--my", `${nextY}px`);
+
+    if (reactiveTriangles) {
+      const driftX = ((nextX / window.innerWidth) - 0.5) * 70;
+      const driftY = ((nextY / window.innerHeight) - 0.5) * 70;
+      reactiveTriangles.style.setProperty("--mx-drift", `${driftX.toFixed(1)}px`);
+      reactiveTriangles.style.setProperty("--my-drift", `${driftY.toFixed(1)}px`);
+    }
+
     rafId = 0;
   };
 
